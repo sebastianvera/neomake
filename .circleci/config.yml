@@ -53,17 +53,19 @@ jobs:
       VIMHELPLINT_VIM=/vim-build/bin/vim81
     steps:
       - checkout
-      - run: make --keep-going check check_docker check_lint_diff
+      - run:
+          name: Check qs
+          command: |
+            set -x
+            python -m ensurepip --user
+            PATH=$HOME/.local/bin:$PATH
+            pip3 install --user -U 'vim-vint>=0.4a1'
+            vint --version
+            make --keep-going check check_docker check_lint_diff
+            set +x
 
 workflows:
   version: 2
   test:
     jobs:
-      - nvim-031
-      - nvim-017
-      - vim-81
-      - vim-80
-      - vim-74-xenial
-      - vim-74-trusty
-      - vim-73
       - checkqa
