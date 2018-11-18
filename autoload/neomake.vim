@@ -1935,7 +1935,6 @@ function! s:ProcessJobOutput(jobinfo, lines, source, ...) abort
     endif
 
     let maker = a:jobinfo.maker
-    let file_mode = a:jobinfo.file_mode
     call neomake#log#debug(printf('processing %d lines of output.',
                 \ len(a:lines)), a:jobinfo)
     let cd_error = a:jobinfo.cd()
