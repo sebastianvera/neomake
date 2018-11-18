@@ -23,7 +23,7 @@ command! -bang -bar -nargs=? -complete=customlist,neomake#cmd#complete_makers
             \ NeomakeInfo call neomake#debug#display_info(<bang>0, <f-args>)
 
 " Enable/disable/toggle commands.  {{{
-function! s:handle_disabled_status(scope, disabled, verbose) abort
+function! s:handle_disabled_status(scope, disabled, _verbose) abort
     if a:scope is# g:
         if a:disabled
             if exists('#neomake')
@@ -35,7 +35,6 @@ function! s:handle_disabled_status(scope, disabled, verbose) abort
             call s:setup_autocmds()
         endif
     elseif a:scope is# t:
-        let tab = tabpagenr()
         let buffers = neomake#compat#uniq(sort(tabpagebuflist()))
         if a:disabled
             for b in buffers
