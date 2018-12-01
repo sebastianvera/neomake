@@ -21,7 +21,7 @@ Execute (makers: append_args):
   " Args as empty string, append string.
   let maker = extend(copy(base_maker), {'append_args': '1 2', 'args': ''})
   call neomake#core#instantiate_maker(maker, {}, 0)
-  AssertEqual maker.args, ['1 2']
+  AssertEqual maker.args, '1 2'
 
   " Args as string, append string.
   let maker = extend(copy(base_maker), {'append_args': '1 2', 'args': '0'})
@@ -45,7 +45,6 @@ Execute (makers: append_args):
   let maker = extend(copy(maker), {'args': ['0']})
   let m = neomake#core#instantiate_maker(maker, {'ft': &ft}, 0)
   AssertEqual m.args, ['0', '1']
-
   bwipe
 
 Execute (neomake#GetMakers):
